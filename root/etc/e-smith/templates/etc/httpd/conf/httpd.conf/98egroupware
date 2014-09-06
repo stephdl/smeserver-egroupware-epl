@@ -60,15 +60,21 @@ RedirectMatch ^(/principals/users/.*)$ /egroupware/groupdav.php$1
   # E_ALL & ~E_NOTICE & ~E_STRICT = 8191 - 8 - 2048 = 6135
   # php_value error_reporting 6135
   php_value error_reporting 'E_ALL & ~E_NOTICE'
-  php_value max_execution_time 90
+  {  
+  $OUT .= "  php_value max_execution_time ($egroupware{'MaxExecutionTime'} || '90')\n";
+  }
   php_value mbstring.func_overload 0
-  php_value memory_limit 256M
+  { 
+    $OUT .= "  php_value memory_limit ($egrouware{'MemoryLimit'} || '256M')\n";
+  }
   php_value session.gc_maxlifetime 14400
   php_value session.save_path /usr/share/egroupware_sess
   php_value include_path .:/usr/share/pear
-  php_value open_basedir /usr/share/egroupware:/var/lib/egroupware:/usr/share/pear:/usr/bin/zip:/usr/share/jpgraph:/usr/bin/tnef:/usr/bin/aspell:/usr/share/fonts:/usr/share/egroupware_sess:/usr/share/egroupware_tmp
+  php_value open_basedir /usr/share/egroupware:/var/lib/egroupware:/usr/share/pear:/usr/bin/zip:/usr/share/jpgraph:/usr/bin/tnef:/usr/bin/aspell:/usr/bin/hunspell:/usr/share/fonts:/usr/share/egroupware_sess:/usr/share/egroupware_tmp
   php_admin_value upload_tmp_dir /usr/share/egroupware_tmp
-  php_value upload_max_filesize 65M
+  {
+  $OUT .= "  php_value upload_max_filesize ($egroupware{'UploadMaxFileSize'} || '65M')\n";
+  }
   php_value max_input_vars 3000
   <Files ~ "\.inc\.php$">
     Order allow,deny
