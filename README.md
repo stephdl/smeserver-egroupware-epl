@@ -1,4 +1,1 @@
-smeserver-egroupware-epl
-========================
-
-a rpm to integrate egroupware-epl in smeserver
+smeserver-egroupware is a contrib for SME Server, a Linux distro oriented server. see http://wiki.contribs.org

@@ -1,0 +1,112 @@
+
+#--------------------------------------------------------------
+# eGroupWare
+#--------------------------------------------------------------
+Alias /egroupware /usr/share/egroupware
+Alias /Microsoft-Server-ActiveSync /usr/share/egroupware/activesync/index.php
+
+RedirectMatch ^/.well-known/(caldav|carddav)$ /egroupware/groupdav.php/
+# iOS 4.3+ calendar requires that to autodetect accounts
+RedirectMatch ^(/principals/users/.*)$ /egroupware/groupdav.php$1
+
+
+<Directory /usr/share/egroupware/>
+{
+    my $egwsec = $egroupware{'HTTPS'} || "off";
+    if ($egwsec eq "off")
+    {
+  $OUT .= "  # SSLRequireSSL on";    
+    } else {
+  $OUT .= "  SSLRequireSSL on";
+    }
+}
+  AddType application/x-httpd-php .php .php3 .phtml
+  AddType text/xml .xml
+  Options FollowSymLinks ExecCGI
+  AllowOverride None
+  Order allow,deny
+{
+    my $egw = $egroupware{'PublicAccess'} || "local";
+    if ($egw eq "local")
+    {
+  $OUT .= "  allow from $localAccess";    
+    } else {
+  $OUT .= "  allow from all";
+    }
+}
+  DirectoryIndex index.html index.php
+  AddHandler cgi-script .cgi
+  AddDefaultCharset Off
+  php_flag file_uploads on
+  php_flag log_errors on
+  php_flag magic_quotes_gpc off
+  php_flag magic_quotes_runtime off
+  php_flag register_globals off
+  php_flag short_open_tag on
+  php_flag track_vars on
+  php_flag display_errors off
+  # E_ALL & ~E_NOTICE & ~E_STRICT = 8191 - 8 - 2048 = 6135
+  # php_value error_reporting 6135
+  php_value error_reporting 'E_ALL & ~E_NOTICE'
+  php_value max_execution_time 90
+  php_value mbstring.func_overload 0
+  php_value memory_limit 128M
+  php_value session.gc_maxlifetime 14400
+  php_value session.save_path /usr/share/egroupware_sess
+  php_value include_path .:/usr/share/pear
+  php_value open_basedir /usr/share/egroupware:/var/lib/egroupware:/usr/share/pear:/usr/bin/zip:/usr/share/jpgraph:/usr/bin/tnef:/usr/bin/aspell:/usr/share/fonts:/usr/share/egroupware_sess:/usr/share/egroupware_tmp
+  php_admin_value upload_tmp_dir /usr/share/egroupware_tmp
+  php_value upload_max_filesize 65M
+  php_value max_input_vars 3000
+  <Files ~ "\.inc\.php$">
+    Order allow,deny
+    Deny from all
+  </Files>
+</Directory>
+
+<Directory /usr/share/egroupware/phpsysinfo/>
+  php_value open_basedir /
+</Directory>
+
+<Directory /usr/share/egroupware/gallery/>
+    php_admin_value upload_tmp_dir /usr/share/egroupware_tmp
+    php_admin_value open_basedir /usr/share/egroupware:/var/lib/egroupware:/tmp:/usr/share/pear:/usr/bin:/bin:/usr/share/egroupware_tmp
+</Directory>
+
+
+<Location /egroupware/icalsrv.php>
+  Script PUT /opt/egroupware/html/icalsrv.php
+  AddHandler ical/ics .ics
+  Action ical/ics /opt/egroupware/html/icalsrv.php
+  Order allow,deny
+{
+    my $egw = $egroupware{'PublicAccess'} || "local";
+    if ($egw eq "local")
+    {
+  $OUT .= "  allow from $localAccess";    
+    } else {
+  $OUT .= "  allow from all";
+    }
+}
+</Location>
+
+<Location /egroupware/rpc.php>
+  php_value mbstring.func_overload 0
+  Order allow,deny
+{
+    my $egw = $egroupware{'PublicAccess'} || "local";
+    if ($egw eq "local")
+    {
+  $OUT .= "  allow from $localAccess";    
+    } else {
+  $OUT .= "  allow from all";
+    }
+}
+</Location>
+
+<Location /egroupware>
+    php_admin_value mbstring.func_overload 0
+    php_value display_errors Off
+</Location>
+
+#--------------------------------------------------------------

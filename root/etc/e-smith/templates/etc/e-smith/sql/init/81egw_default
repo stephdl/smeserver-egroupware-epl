@@ -1,0 +1,3 @@
+#!/bin/sh
+
+/usr/bin/mysql { $egroupware{DbName} } </usr/share/doc/eGroupWare-1.8.005/Sources/egroupware-1.8.005.sql 
