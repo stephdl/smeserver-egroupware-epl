@@ -3,7 +3,7 @@
 # Name: Sylvain Gomez
 
 %define name smeserver-egroupware-epl
-%define version 14
+%define version 14.1
 %define release 1
 
 
