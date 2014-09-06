@@ -5,10 +5,22 @@
 Alias /egroupware /usr/share/egroupware
 Alias /Microsoft-Server-ActiveSync /usr/share/egroupware/activesync/index.php
 
-RedirectMatch ^/.well-known/(caldav|carddav)$ /egroupware/groupdav.php/
+##RedirectMatch ^/.well-known/(caldav|carddav)$ /egroupware/groupdav.php/
 # iOS 4.3+ calendar requires that to autodetect accounts
-RedirectMatch ^(/principals/users/.*)$ /egroupware/groupdav.php$1
+##RedirectMatch ^(/principals/users/.*)$ /egroupware/groupdav.php$1
 
+
+###autodetect caldav and carddav
+RewriteEngine On
+RewriteBase /
+
+RewriteRule ^.well-known/(caldav|carddav)$ /egroupware/groupdav.php/ [R]
+RewriteCond %{REQUEST_METHOD}	^(PROPFIND|OPTIONS)$
+RewriteRule ^/$ /egroupware/groupdav.php/ [R]
+
+# iOS 4.3+ calendar requires that to autodetect accounts
+RewriteRule ^(/principals/users/.*)$ /egroupware/groupdav.php$1 [R]
+###End autodetection
 
 <Directory /usr/share/egroupware/>
 {
@@ -50,7 +62,7 @@ RedirectMatch ^(/principals/users/.*)$ /egroupware/groupdav.php$1
   php_value error_reporting 'E_ALL & ~E_NOTICE'
   php_value max_execution_time 90
   php_value mbstring.func_overload 0
-  php_value memory_limit 128M
+  php_value memory_limit 256M
   php_value session.gc_maxlifetime 14400
   php_value session.save_path /usr/share/egroupware_sess
   php_value include_path .:/usr/share/pear
@@ -64,14 +76,14 @@ RedirectMatch ^(/principals/users/.*)$ /egroupware/groupdav.php$1
   </Files>
 </Directory>
 
-<Directory /usr/share/egroupware/phpsysinfo/>
-  php_value open_basedir /
-</Directory>
+##<Directory /usr/share/egroupware/phpsysinfo/>
+##  php_value open_basedir /
+##</Directory>
 
-<Directory /usr/share/egroupware/gallery/>
-    php_admin_value upload_tmp_dir /usr/share/egroupware_tmp
-    php_admin_value open_basedir /usr/share/egroupware:/var/lib/egroupware:/tmp:/usr/share/pear:/usr/bin:/bin:/usr/share/egroupware_tmp
-</Directory>
+##<Directory /usr/share/egroupware/gallery/>
+##    php_admin_value upload_tmp_dir /usr/share/egroupware_tmp
+##    php_admin_value open_basedir /usr/share/egroupware:/var/lib/egroupware:/tmp:/usr/share/pear:/usr/bin:/bin:/usr/share/egroupware_tmp
+##</Directory>
 
 
 <Location /egroupware/icalsrv.php>

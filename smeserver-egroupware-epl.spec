@@ -19,7 +19,8 @@ BuildRoot:          /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildArchitectures: noarch
 BuildRequires:      e-smith-devtools
 Requires:           e-smith-base, e-smith-release >= 9
-Requires:          egroupware-epl
+Requires:           egroupware-epl
+Requires:           php-pecl-zendopcache
 
 %description
 This RPM is an unofficial addon for the SME Server 8.x and above.
