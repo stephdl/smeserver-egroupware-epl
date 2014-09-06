@@ -220,9 +220,9 @@ UPDATE=$(ls /usr/share/ | grep -c egroupware)
 #tar xzf /usr/share/doc/eGroupWare-1.4.004/Sources/eGroupWare-1.4.004.tar.gz -C /opt/egroupware
 #tar xzf /usr/share/doc/eGroupWare-1.4.004/Sources/eGroupWare-egw-pear-1.4.004.tar.gz -C /opt/egroupware
 #tar xzf /usr/share/doc/eGroupWare-1.4.004/Sources/eGroupWare-gallery-1.4.004.tar.gz -C /opt/egroupware
-echo "Preparing phpSysInfo..."
-cp -f /usr/share/doc/eGroupWare-1.8.005/Sources/phpSysInfo/config.php /usr/share/egroupware/phpsysinfo/
-cp -f /usr/share/doc/eGroupWare-1.8.005/Sources/phpSysInfo/Redhat.png /usr/share/egroupware/phpsysinfo/images/
+#echo "Preparing phpSysInfo..."
+#cp -f /usr/share/doc/eGroupWare-1.8.005/Sources/phpSysInfo/config.php /usr/share/egroupware/phpsysinfo/
+#cp -f /usr/share/doc/eGroupWare-1.8.005/Sources/phpSysInfo/Redhat.png /usr/share/egroupware/phpsysinfo/images/
 
 #echo "Cleaning Install..."
 #rm -rf /opt/egroupware/egroupware
@@ -270,16 +270,16 @@ fi
 echo " "
 
 # the integration is complete Ithink now.....
-echo "Preparing Gallery2..."
-if [ -f /usr/share/egroupware/gallery/gallery2/config.php ] ; then
-  touch /usr/share/egroupware/gallery/gallery2/config.php
-else
-  sed 's.egwpass.'$EGPASS'.g' /usr/share/doc/eGroupWare-1.8.005/Sources/Gallery2/config.php > /usr/share/egroupware/gallery/gallery2/config.php
-fi
+#echo "Preparing Gallery2..."
+#if [ -f /usr/share/egroupware/gallery/gallery2/config.php ] ; then
+#  touch /usr/share/egroupware/gallery/gallery2/config.php
+#else
+#  sed 's.egwpass.'$EGPASS'.g' /usr/share/doc/eGroupWare-1.8.005/Sources/Gallery2/config.php > /usr/share/egroupware/gallery/gallery2/config.php
+#fi
 
-chmod 640     /usr/share/egroupware/gallery/gallery2/config.php
-chown www:www /usr/share/egroupware/gallery/gallery2/config.php
-echo " "
+#chmod 640     /usr/share/egroupware/gallery/gallery2/config.php
+#chown www:www /usr/share/egroupware/gallery/gallery2/config.php
+#echo " "
 
 ### this one will be done by event
 echo "MySQL installation:"
