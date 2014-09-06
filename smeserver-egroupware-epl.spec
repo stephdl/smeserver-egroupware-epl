@@ -353,7 +353,7 @@ echo "--------------------------------------------------------------------------
 
 %preun
 if [ $1 = 0 ] ; then
-  mv /usr/share/doc/eGroupWare-1.8.005/Sources/DO_NOT_USE_OR_DELETE/eGW-Full-Uninstall.sh /root/
+  mv /usr/share/doc/egroupware-epl/Sources/DO_NOT_USE_OR_DELETE/eGW-Full-Uninstall.sh /root/
 fi
 
 
