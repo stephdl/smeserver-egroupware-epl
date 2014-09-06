@@ -20,7 +20,7 @@ BuildArchitectures: noarch
 BuildRequires:      e-smith-devtools
 Requires:           e-smith-base, e-smith-release >= 9
 Requires:           egroupware-epl
-#Requires:          php-pecl-zendopcache
+Requires:          php-pecl-zendopcache
 Obsoletes:          smeserver-egroupware
 
 %description
