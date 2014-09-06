@@ -259,7 +259,7 @@ echo "Preparing header.inc.php..."
 # if first install
 if [ "$1" = "1" ] ; then
 #  0) 
-sed 's.egwpass.'$EGPASS'.g' /usr/share/doc/eGroupWare-1.8.005/Sources/header.inc.php > /usr/share/egroupware/header.inc.php 
+sed 's.egwpass.'$EGPASS'.g' /usr/share/doc/egroupware-epl/Sources/header.inc.php > /usr/share/egroupware/header.inc.php 
 echo " done!"
 fi
 #  *) mv -f /opt/egroupware/html/header.inc.php /opt/egroupware/ 2>/dev/null ;;
