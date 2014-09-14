@@ -186,7 +186,7 @@ rm -rf $RPM_BUILD_ROOT
 %pre
 # Checking if eGW files are present before updating
 # If present, installation files + MySQL DB are saved
-UPDATE=$(ls /opt | grep -c egroupware)
+UPDATE=$(ls /var/lib/mysql | grep -c egroupware)
 case $UPDATE in
   0)
     echo "Installing eGroupware... Please wait!"
@@ -198,7 +198,7 @@ case $UPDATE in
 #    cd /opt
 #    echo "Backing up installation files..."
 #    tar -czf /opt/eGW_RPM_BACKUP/egroupware.tar.gz egroupware
-    echo "Backing up MySQL database..."
+    echo "Backing up MySQL database in /opt/eGW_RPM_BACKUP/..."
     mysqldump egroupware > /opt/eGW_RPM_BACKUP/egroupware$(date +%Y-%m-%d).sql
     /sbin/e-smith/db configuration show egroupware > /opt/eGW_RPM_BACKUP/config.txt
     ;;
