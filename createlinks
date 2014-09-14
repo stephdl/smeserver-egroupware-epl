@@ -3,6 +3,6 @@
 use esmith::Build::CreateLinks qw(:all);
 
 
-templates2events("/etc/e-smith/sql/init/80egw_mysql.sql",  qw(bootstrap-console-save post-install post-upgrade console-save));
-templates2events("/etc/e-smith/sql/init/81egw_domain.sql", qw(bootstrap-console-save post-install post-upgrade console-save));
-templates2events("/etc/e-smith/sql/init/81egw_default", qw(bootstrap-console-save post-install post-upgrade console-save));
+templates2events("/etc/e-smith/sql/init/80egw_mysql.sql",  qw(bootstrap-console-save post-install post-upgrade ));
+templates2events("/etc/e-smith/sql/init/81egw_domain.sql", qw(bootstrap-console-save post-install post-upgrade ));
+templates2events("/etc/e-smith/sql/init/81egw_default", qw(bootstrap-console-save post-install post-upgrade ));
