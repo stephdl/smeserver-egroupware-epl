@@ -1,4 +1,0 @@
-#!/bin/sh
-
-     /usr/bin/mysql { $egroupware{DbName} } </usr/share/doc/egroupware-epl/Sources/egroupware-14.1.sql 
-

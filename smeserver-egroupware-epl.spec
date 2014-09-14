@@ -284,9 +284,9 @@ echo " "
 
 ### this one will be done by event
 echo "MySQL installation:"
-#if [ "$UPDATE" = "0" ] ; then
-#  cp /usr/share/doc/eGroupWare-1.4.004/Sources/81egw_database.sql /etc/e-smith/sql/init/
-#fi
+if [ "$UPDATE" = "0" ] ; then
+  cp /usr/share/doc/egroupware-epl/Sources/egroupware-14.1.sql /etc/e-smith/sql/init/
+fi
 /sbin/e-smith/expand-template /etc/e-smith/sql/init/80egw_mysql.sql
 #/sbin/e-smith/expand-template /etc/e-smith/sql/init/81egw_default
 /sbin/e-smith/expand-template /etc/e-smith/sql/init/81egw_domain.sql
