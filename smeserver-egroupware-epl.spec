@@ -288,7 +288,7 @@ echo "MySQL installation:"
 #  cp /usr/share/doc/eGroupWare-1.4.004/Sources/81egw_database.sql /etc/e-smith/sql/init/
 #fi
 /sbin/e-smith/expand-template /etc/e-smith/sql/init/80egw_mysql.sql
-/sbin/e-smith/expand-template /etc/e-smith/sql/init/81egw_default
+#/sbin/e-smith/expand-template /etc/e-smith/sql/init/81egw_default
 /sbin/e-smith/expand-template /etc/e-smith/sql/init/81egw_domain.sql
 /etc/rc.d/init.d/mysql.init start
 echo " "
