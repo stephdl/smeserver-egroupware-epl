@@ -1,4 +1,4 @@
 #!/bin/sh
-
+if [[ ! -e /var/lib/mysql/egroupware/ ]]; then
     /usr/bin/mysql { $egroupware{DbName} } < /usr/share/doc/egroupware-epl/Sources/egroupware-14.1.sql 
-
+fi
