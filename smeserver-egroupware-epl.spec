@@ -4,7 +4,7 @@
 
 %define name smeserver-egroupware-epl
 %define version 14.1
-%define release 1
+%define release 2
 
 
 Summary:            egroupware-epl web application for SME >=9
@@ -24,7 +24,7 @@ Requires:          php-pecl-zendopcache
 Obsoletes:          smeserver-egroupware
 
 %description
-This RPM is an unofficial addon for the SME Server 8.x and above.
+This RPM is an unofficial addon for the SME Server 9.x and above.
 egroupware-epl is a free enterprise ready groupware software for your network.
 It enables you to manage contacts, appointments, todos and many more for your whole business.
 eGroupWare is a groupware server. It comes with a native web-interface which allowes to access
@@ -39,8 +39,9 @@ https://yourdomain.com/egroupware
 
 
 %changelog
-* Mon Sep 01 2014 stephane de Labrusse <stephdl@de-labrusse.fr> 14-1.sme
-- Initial release to sme9 in stephdlrepo
+* Mon Sep 01 2014 stephane de Labrusse <stephdl@de-labrusse.fr> 14.1-2.sme
+- Initial release for egroupware-epl to sme9 in stephdlrepo
+- Many thank to Jean Louis Abegg for tests, tips
 
 * Sun Dec 15 2013  JP Pialasse <tests@pialasse.com> 1.8.005-5.sme
 - fix hostname [SME: 5127]
@@ -288,7 +289,6 @@ echo "MySQL installation:"
 #    cp /usr/share/doc/egroupware-epl/Sources/81egw_default /etc/e-smith/sql/init/
 #fi
 /sbin/e-smith/expand-template /etc/e-smith/sql/init/80egw_mysql.sql
-#now it is no more templated, it is launched only one time
 /sbin/e-smith/expand-template /etc/e-smith/sql/init/81egw_default
 /sbin/e-smith/expand-template /etc/e-smith/sql/init/81egw_domain.sql
 /etc/rc.d/init.d/mysql.init start
