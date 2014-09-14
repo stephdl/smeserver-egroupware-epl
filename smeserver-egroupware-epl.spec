@@ -288,7 +288,8 @@ if [ "$UPDATE" = "0" ] ; then
     cp /usr/share/doc/egroupware-epl/Sources/81egw_default /etc/e-smith/sql/init/
 fi
 /sbin/e-smith/expand-template /etc/e-smith/sql/init/80egw_mysql.sql
-/sbin/e-smith/expand-template /etc/e-smith/sql/init/81egw_default
+#now it is no more templated, it is launched only one time
+#/sbin/e-smith/expand-template /etc/e-smith/sql/init/81egw_default
 /sbin/e-smith/expand-template /etc/e-smith/sql/init/81egw_domain.sql
 /etc/rc.d/init.d/mysql.init start
 echo " "
